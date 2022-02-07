@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Building Recovery</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+		<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="../static/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="../static/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+
+<body>
+  <!-- Sidebar on click -->
+<nav class="w3-sidebar w3-bar-block w3-white w3-card w3-animate-left w3-xxlarge" style="display:none;z-index:2" id="mySidebar">
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-display-topright w3-text-teal">Close
+    <i class="fa fa-remove"></i>
+  </a>
+  <a href="http://127.0.0.1:5000/prevention" class="w3-bar-item w3-button">Earthquake Forecasting</a>
+  <a href="http://indianhelpline.com/" class="w3-bar-item w3-button">Emergency Contacts</a>
+</nav>
+
+<!-- Navbar -->
+<div class="w3-top">
+ <div class="w3-bar w3-theme-d2 w3-left-align">
+  <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-hover-white w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
+  <a href="http://127.0.0.1:5000/" class="w3-bar-item w3-button w3-teal"><i class="fa fa-home w3-margin-right"></i>Quaker</a>
+  <a href="http://127.0.0.1:5000/prevention" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Earthquake Forecasting</a>
+  <a href="http://indianhelpline.com/" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Emergency Contacts</a>
+    
+  </div>
+  
+ </div>
+
+  <!-- Navbar on small screens -->
+  <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium">
+	<a href="http://127.0.0.1:5000/" class="w3-bar-item w3-button">Quaker</a>
+    <a href="http://127.0.0.1:5000/prevention" class="w3-bar-item w3-button">Earthquake Forecasting</a>   
+    <a href="http://indianhelpline.com/" class="w3-bar-item w3-button">Emergency Contacts</a>
+  </div>
+</div>
+
+
+
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      <br><br>
+      <h1 class="header center orange-text">Building Damage Analysis</h1>
+      <div class="row center">
+        <h5 class="header col s12 light"><h5>Predict the Grade of Building Damage</h5>
+        <br>
+        </h5>
+      </div>
+
+              <div class="row">
+    <form action='/recovery' method="POST" class="col s12">
+      <div class="row">
+        <div class="input-field col s4">
+            <label for="count_floors_pre_eq"><b>No. of Floors Before</b></label>
+            <br>
+          <input   id="count_floors_pre_eq" name='count_floors_pre_eq' type="number" class="validate" min="1" required>
+        </div>
+        <div class="input-field col s4">
+            <label for="count_floors_post_eq"><b>No. of Floors After</b></label>
+            <br>
+          <input   id="count_floors_post_eq" name='count_floors_post_eq' type="number" class="validate" min="0" required>
+        </div>
+        <div class="input-field col s4">
+            <label for="age_building"><b>Age of Building</b></label>
+            <br>
+          <input   id="age_building" name='age_building' type="number" class="validate" min="0" required>
+        </div>
+        <div class="input-field col s4">
+            <label for="plinth_area_sq_ft"><b>Plinth Area(sq_ft)</b></label>
+            <br>
+          <input   id="plinth_area_sq_ft" name='plinth_area_sq_ft' type="number" class="validate" min="1" required>
+        </div>
+        <div class="input-field col s4">
+            <label for="height_ft_pre_eq"><b>Height Before Earthquake</b></label>
+            <br>
+          <input   id="height_ft_pre_eq" name='height_ft_pre_eq' type="number" class="validate" min="1" required>
+        </div>
+        <div class="input-field col s4">
+            <label for="height_ft_post_eq"><b>Height After Earthquake</b></label>
+            <br>
+          <input   id="height_ft_post_eq" name='height_ft_post_eq' type="number" class="validate" min="0" required>
+        </div>
+        <div class="input-field col s4">
+            <label for="land_surface_condition"><b>Land Surface Condition</b></label>
+            <br>
+          <input   list="land_surface_condition" name='land_surface_condition' type="text" class="validate"  required>
+          <datalist id="land_surface_condition">
+                <option value="Flat"></option>
+                <option value="Moderate slope"></option>
+                <option value="Steep slope"></option>
+          </datalist>
+        </div>
+        <div class="input-field col s4">
+            <label for="foundation_type"><b>Foundation Type</b></label>
+            <br>
+          <input   list="foundation_type" name='foundation_type' type="text" class="validate"  required>
+          <datalist id="foundation_type">
+                <option value="Mud mortar-Stone/Brick"></option>
+                <option value="Bamboo/Timber"></option>
+                <option value="Cement-Stone/Brick"></option>
+                <option value="RC"></option>
+                <option value="Other"></option>
+          </datalist>
+        </div>
+        <div class="input-field col s4">
+            <label for="roof_type"><b>Roof Type</b></label>
+            <br>
+          <input   list="roof_type" name='roof_type' type="text" class="validate"  required>
+          <datalist id="roof_type">
+                <option value="Bamboo/Timber-Light roof"></option>
+                <option value="Bamboo/Timber-Heavy roof"></option>
+                <option value="RCC/RB/RBC"></option>
+          </datalist>
+        </div>
+        <div class="input-field col s4">
+            <label for="ground_floor_type"><b>Ground Floor Type</b></label>
+            <br>
+          <input   list="ground_floor_type" name='ground_floor_type' type="text" class="validate"  required>
+          <datalist id="ground_floor_type">
+                <option value="Mud"></option>
+                <option value="RC"></option>
+                <option value="Brick/Stone"></option>
+                <option value="Timber"></option>
+                <option value="Other"></option>
+          </datalist>
+        </div>
+        <div class="input-field col s4">
+            <label for="other_floor_type"><b>Other Floor Type</b></label>
+            <br>
+          <input   list="other_floor_type" name='other_floor_type' type="text" class="validate"  required>
+          <datalist id="other_floor_type">
+                <option value="TImber/Bamboo-Mud"></option>
+                <option value="Timber-Planck"></option>
+                <option value="RCC/RB/RBC"></option>
+                <option value="Not applicable"></option>
+          </datalist>
+        </div>
+        <div class="input-field col s4">
+            <label for="position"><b>Position</b></label>
+            <br>
+          <input   list="position" name='position' type="text" class="validate"  required>
+          <datalist id="position">
+                <option value="Not attached"></option>
+                <option value="Attached-1 side"></option>
+                <option value="Attached-2 side"></option>
+                <option value="Attached-3 side"></option>
+          </datalist>
+        </div>
+        <div class="input-field col s4">
+            <label for="plan_configuration"><b>Plan Configuration</b></label>
+            <br>
+          <input   list="plan_configuration" name='plan_configuration' type="text" class="validate"  required>
+          <datalist id="plan_configuration">
+                <option value="Rectangular"></option>
+                <option value="Square"></option>
+                <option value="L-shape"></option>
+                <option value="T-shape"></option>
+                <option value="U-shape"></option>
+                <option value="E-shape"></option>
+                <option value="H-shape"></option>
+                <option value="Multi-projected"></option>
+                <option value="Building with Central Courtyard"></option>
+                <option value="Others"></option>
+          </datalist>
+        </div>
+        <div class="input-field col s4">
+            <label for="superstructure"><b>Superstructure Type</b></label>
+            <br>
+          <input   list="superstructure" name='superstructure' type="text" class="validate"  required>
+          <datalist id="superstructure">
+                <option value="has_superstructure_adobe_mud"></option>
+                <option value="has_superstructure_mud_mortar_stone"></option>
+                <option value="has_superstructure_stone_flag"></option>
+                <option value="has_superstructure_cement_mortar_stone"></option>
+                <option value="has_superstructure_mud_mortar_brick"></option>
+                <option value="has_superstructure_cement_mortar_brick"></option>
+                <option value="has_superstructure_timber"></option>
+                <option value="has_superstructure_bamboo"></option>
+                <option value="has_superstructure_rc_non_engineered"></option>
+                <option value="has_superstructure_rc_engineered"></option>
+                <option value="has_superstructure_other"></option>
+          </datalist>
+        </div>
+        <div class="input-field col s4">
+            <label for="condition_post_eq"><b>Condition Post Earthquake</b></label>
+            <br>
+          <input   list="condition_post_eq" name='condition_post_eq' type="text" class="validate"  required>
+          <datalist id="condition_post_eq">
+                <option value="Damaged-Not used"></option>
+                <option value="Damaged-Rubble unclear"></option>
+                <option value="Damaged-Used in risk"></option>
+                <option value="Damaged-Repaired and used"></option>
+                <option value="Damaged-Rubble clear"></option>
+                <option value="Not Damaged-Not"></option>
+                <option value="Damaged-Rubble Clear-New building built"></option>
+                <option value="Covered by landslide"></option>
+          </datalist>
+        </div>
+
+        
+
+      </div>
+
+      <div class="row center">
+
+          <button type="submit" class="btn-large waves-effect waves-light orange">Predict Grade</button>
+      </div>
+    </form>
+      </div>
+
+
+    </div>
+  </div>
+
+  
+  </div>
+
+  
+  <!-- Footer -->
+<footer class="w3-container w3-padding-32 w3-theme-d1 w3-center">
+  <h4>Follow Us</h4>
+  <a class="w3-button w3-large w3-teal" href="javascript:void(0)" title="Facebook"><i class="fa fa-facebook"></i></a>
+  <a class="w3-button w3-large w3-teal" href="javascript:void(0)" title="Twitter"><i class="fa fa-twitter"></i></a>
+  <a class="w3-button w3-large w3-teal" href="javascript:void(0)" title="Google +"><i class="fa fa-google-plus"></i></a>
+  <a class="w3-button w3-large w3-teal" href="javascript:void(0)" title="Google +"><i class="fa fa-instagram"></i></a>
+  <a class="w3-button w3-large w3-teal w3-hide-small" href="javascript:void(0)" title="Linkedin"><i class="fa fa-linkedin"></i></a>
+  <p>Made by <a href="http://github.com/ChauhanNikita398" target="_blank">Nikita Chauhan</a></p>
+
+  <div style="position:relative;bottom:100px;z-index:1;" class="w3-tooltip w3-right">
+    <span class="w3-text w3-padding w3-teal w3-hide-small">Go To Top</span>   
+    <a class="w3-button w3-theme" href="#myPage"><span class="w3-xlarge">
+    <i class="fa fa-chevron-circle-up"></i></span></a>
+  </div>
+  
+  
+</footer>
+
+<script>
+// Script for side navigation
+function w3_open() {
+  var x = document.getElementById("mySidebar");
+  x.style.width = "300px";
+  x.style.paddingTop = "10%";
+  x.style.display = "block";
+}
+
+// Close side navigation
+function w3_close() {
+  document.getElementById("mySidebar").style.display = "none";
+}
+
+// Used to toggle the menu on smaller screens when clicking on the menu button
+function openNav() {
+  var x = document.getElementById("navDemo");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+</script>
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src=".js/materialize.js"></script>
+  <script src="js/init.js"></script>
+
+  </body>
+</html>
